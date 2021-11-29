@@ -1,0 +1,20 @@
+{
+    "name": "root/keycloak-api-client",
+    "autoload": {
+        "psr-4": {
+            "Root\\KeycloakApiClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Joan Perez Alvarado",
+            "email": "41269373+joanjpx@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    }
+}

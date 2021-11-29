@@ -1,13 +1,14 @@
 <?php
 
 namespace KeycloakApiClient;
-
+use KeycloakApiClient\Rest;
 
 class KeycloakApi
 {
     /** Attributes */
 
     private $baseUrl;
+    private $basePath;
     private $clientId;
     private $clientSecret;
     private $grandType;
@@ -18,6 +19,7 @@ class KeycloakApi
     private $refreshToken;
     private $accessToken;
     private $expiresIn;
+    private $ApiClient;
 
     /**
      * KeycloakApi constructor.
@@ -29,18 +31,29 @@ class KeycloakApi
      * @param $password
      */
 
-    public function __construct($baseUrl, $clientId, $clientSecret, $realm, $username, $password)
+    public function __construct($baseUrl=null, $basePath="/auth/admin/realms", $clientId=null, $clientSecret=null, $realm=null, $username=null, $password=null)
     {
         $this->baseUrl = $baseUrl;
+        $this->basePath = $basePath;
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->realm = $realm;
         $this->username = $username;
         $this->password = $password;
         $this->grandType = 'password';
+
+        $this->ApiClient = new Rest($this);
+
+        print_r($this->authenticate());
+        exit;
+
     }
 
 
+    public function getApiClient() : Rest
+    {
+        return $this->ApiClient;
+    }
     /** Methods */
 
     // set Base Url
@@ -85,7 +98,7 @@ class KeycloakApi
 
     // set Grand Type
 
-    public function setGrandType(String $grandType) : void
+    public function setGrantType(String $grandType) : void
     {
         $this->grandType = $grandType;
     }
@@ -199,7 +212,7 @@ class KeycloakApi
     public function authenticate()
     {
 
-
+        return $this->ApiClient->ApiAuthenticate();
     }
 
     // API Methods from Postman Collection @ Keycloak API REST

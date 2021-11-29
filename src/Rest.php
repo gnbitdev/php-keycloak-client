@@ -9,11 +9,13 @@ class Rest
     private $KeycloakClient;
 
 
-    public function __construct(KeycloakApi $KeycloakClient)
+    public function __construct(Array $KeycloakClient)
     {
         
         $this->client = new Client();
         $this->config = $KeycloakClient;
+
+        print_r($this->config);exit;
     }
 
     public function ApiAuthenticate()
@@ -47,7 +49,7 @@ class Rest
         return $response;
     }
 
-    public function ApiPost($url, $data)
+    public function ApiPost($url, Array $data)
     {
         $response = $this->client->post($url, [
             'headers' => [
@@ -60,7 +62,7 @@ class Rest
         return $response;
     }
 
-    public function ApiPut($url, $data)
+    public function ApiPut($url, Array $data)
     {
         $response = $this->client->put($url, [
             'headers' => [
@@ -85,7 +87,7 @@ class Rest
         return $response;
     }
 
-    public function ApiPatch($url, $data)
+    public function ApiPatch($url, Array $data)
     {
         $response = $this->client->patch($url, [
             'headers' => [

@@ -1,10 +1,10 @@
 <?php
 require_once 'vendor/autoload.php';
 
-use KeycloakApiClient\REST;
+use KeycloakApiClient\Rest;
 
 
-$REST = new REST();
+$REST = new Rest();
 
 print_r($REST);exit;
 

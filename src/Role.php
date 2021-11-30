@@ -21,7 +21,7 @@ class Role
         return $this->name;
     }
 
-    public function setName($name)
+    public function setName(String $name)
     {
         $this->name = $name;
     }
@@ -31,7 +31,7 @@ class Role
         return $this->description;
     }
 
-    public function setDescription($description)
+    public function setDescription(String $description)
     {
         $this->description = $description;
     }

@@ -39,14 +39,22 @@ $api = new KeycloakApi($kce, $guzzleClient);
 
 // $api->storeUser($user);
 
+## GET USERS
+
+print_r(
+    $api->getUsers()
+);
+exit;
+
+
 
 ## CREATE ROLE
 
-$role = new Role();
-$role->setName('Test Role');
-$role->setDescription('Test Role');
+// $role = new Role();
+// $role->setName('Test Role3');
+// $role->setDescription('Test Role2');
 
-$api->storeRole($role);
+// $api->storeRole($role);
 
 ##
 

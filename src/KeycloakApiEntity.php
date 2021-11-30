@@ -28,7 +28,7 @@ class KeycloakApiEntity
      * @param $password
      */
 
-    public function __construct($baseUrl=null, $basePath="/auth/admin/realms", $clientId=null, $clientSecret=null, $realm=null, $username=null, $password=null)
+    public function __construct($baseUrl='', $basePath="/auth/admin/realms", $clientId='', $clientSecret='', $realm='', $username='', $password='')
     {
         $this->baseUrl = $baseUrl;
         $this->basePath = $basePath;
@@ -50,11 +50,7 @@ class KeycloakApiEntity
             'grandType' => $this->getGrandType(),
             'realm' => $this->getRealm(),
             'username' => $this->getUsername(),
-            'password' => $this->getPassword(),
-            'token' => $this->getToken(),
-            'refreshToken' => $this->getRefreshToken(),
-            'accessToken' => $this->getAccessToken(),
-            'expiresIn' => $this->getExpiresIn()            
+            'password' => $this->getPassword()           
         ];
     }
 

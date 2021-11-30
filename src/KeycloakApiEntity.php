@@ -1,5 +1,5 @@
 <?php
-
+namespace KeycloakApiClient;
 class KeycloakApiEntity
 {
     /** Attributes */
@@ -59,6 +59,11 @@ class KeycloakApiEntity
     }
 
     /** Methods */
+
+    public function getUrl()
+    {
+        return $this->baseUrl . $this->basePath;
+    }
 
     // set Base Url
     public function setBaseUrl(String $baseUrl) : void

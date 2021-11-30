@@ -36,6 +36,14 @@ class Role
         $this->description = $description;
     }
 
+    public function toArray()
+    {
+        return array(
+            'name' => $this->name,
+            'description' => $this->description
+        );
+    }
+
 }
 
 ?>

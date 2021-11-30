@@ -25,6 +25,13 @@ class Realm
     {
         $this->realmName = $realmName;
     }
+
+    public function toArray()
+    {
+        return array(
+            'realmName' => $this->realmName
+        );
+    }
 }
 
 ?>

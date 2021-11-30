@@ -119,6 +119,24 @@ class User
         $this->attributes[$attributeName][0] = $attributeValue;
     }
 
+
+    public function toArray()
+    {
+        $array = array();
+
+        $array['username'] = $this->username;
+        $array['enabled'] = $this->enabled;
+        $array['totp'] = $this->totp;
+        $array['emailVerified'] = $this->emailVerified;
+        $array['firstName'] = $this->firstName;
+        $array['lastName'] = $this->lastName;
+        $array['email'] = $this->email;
+        $array['attributes'] = $this->attributes;
+
+        return $array;
+    }
+        
+
     
 
 

@@ -293,6 +293,115 @@ class KeycloakApi
         }
     }
 
+    // GROUPS METHODS
+
+    public function getGroups()
+    {
+        try{
+            $response = $this->client->get(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/groups/",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+    
+            return $response->getBody()->getContents();
+
+        }catch(\Exception $e){
+                
+                throw new \Exception($e->getMessage());
+        }
+    }
+
+    public function getGroup(String $groupName)
+    {
+        try{
+            $response = $this->client->get(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/groups/{$groupName}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+    
+            return $response->getBody()->getContents();
+
+        }catch(\Exception $e){
+                
+                throw new \Exception($e->getMessage());
+        }
+    }
+
+    public function storeGroup(Group $group)
+    {
+        try{
+            $response = $this->client->post(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/groups/",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ],
+                    'json' => $group->toArray()
+                ]
+            );
+    
+            return $response->getBody()->getContents();
+
+        }catch(\Exception $e){
+                
+                throw new \Exception($e->getMessage());
+        }
+    }
+
+    public function updateGroup(Group $group, String $groupName)
+    {
+        try{
+            $response = $this->client->post(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/groups/{$groupName}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ],
+                    'json' => $group->toArray()
+                ]
+            );
+    
+            return $response->getBody()->getContents();
+
+        }catch(\Exception $e){
+                
+                throw new \Exception($e->getMessage());
+        }
+    }
+
+    public function deleteGroup(String $groupName)
+    {
+        try{
+            $response = $this->client->delete(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/groups/{$groupName}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+    
+            return $response->getBody()->getContents();
+
+        }catch(\Exception $e){
+                
+                throw new \Exception($e->getMessage());
+        }
+    }
+
 }
 
 ?>

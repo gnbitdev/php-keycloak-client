@@ -7,6 +7,7 @@ use KeycloakApiClient\KeycloakApi;
 use KeycloakApiClient\KeycloakApiEntity;
 use KeycloakApiClient\Role;
 use KeycloakApiClient\User;
+use KeycloakApiClient\Group;
 
 $kce = new KeycloakApiEntity();
 

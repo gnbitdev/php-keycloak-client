@@ -432,7 +432,7 @@ class KeycloakApi
             throw new \Exception($e->getMessage());
         }
     }
-
+    
     public function deleteGroup(String $groupName)
     {
         try{

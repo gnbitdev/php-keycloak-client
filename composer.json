@@ -1,11 +1,19 @@
 {
     "name": "gnbitdev/php-keycloak-client",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "keycloak",
+        "jwt",
+        "authentication"
+    ],
     "authors": [
         {
             "name": "Joan Perez Alvarado",
             "email": "41269373+joanjpx@users.noreply.github.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "guzzlehttp/guzzle": "^7.0",
         "league/oauth2-client": "^2.6",

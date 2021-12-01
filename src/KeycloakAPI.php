@@ -14,7 +14,6 @@ class KeycloakApi
     {
         $this->entity = $keycloakApiEntity;
         $this->client = $client;
-        
     }
 
 
@@ -53,7 +52,7 @@ class KeycloakApi
             'refresh_token' => $this->refreshToken
         ];
 
-        $url = "{$this->entity->getBaseUrl()}/auth/realms/{$this->entity->getRealm()}/protocol/openid-connect/token";
+        $url = "{$this->entity->getBaseUrl()}/auth/realms/{$this->entity->getRealm()}/protocol/openid-connect/logout";
         $response = $this->client->post($url, [
             'form_params' => $formParams
         ]);
@@ -77,9 +76,12 @@ class KeycloakApi
                     'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
                     'Content-Type' => 'application/json'
                 ],
-                'json' => $user->toArray()
+                'json' => $user->toArray(),
             ]);
-            return $response->getBody()->getContents();
+
+            $this->ApiLogout();
+
+            return json_decode($response->getBody()->getContents());
             
         }catch(\Exception $e){
             
@@ -101,25 +103,35 @@ class KeycloakApi
             ]
         ]);
 
-        $response = $this->client->post();
+        $this->ApiLogout();
 
-        return $response->getBody()->getContents();
+        return json_decode($response->getBody()->getContents());
     }
     
 
     public function getUser(String $userId)
     {
-        $response = $this->client->get(
-            "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}",
-            [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
-                    'Content-Type' => 'application/json'
+        try{
+            
+            $response = $this->client->get(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
                 ]
-            ]
-        );
+            );
 
-        return $response->getBody()->getContents();
+            $this->ApiLogout();
+
+            return json_decode($response->getBody()->getContents());
+        
+        }catch(\Exception $e){
+                
+            throw new \Exception($e->getMessage());
+        }
+
     }
 
     public function getUsers() : Array
@@ -135,7 +147,9 @@ class KeycloakApi
                     ]
                 ]
             );
-    
+
+            $this->ApiLogout();
+
             return json_decode($response->getBody()->getContents());
 
         }catch(\Exception $e){
@@ -158,9 +172,8 @@ class KeycloakApi
                 'json' => $user->toArray()
             ]);
             
-            $response = $this->client->post();
-    
-            return $response->getBody()->getContents();
+            $this->ApiLogout();
+            return json_decode($response->getBody()->getContents());
 
         }catch(\Exception $e){
             
@@ -170,49 +183,69 @@ class KeycloakApi
 
     public function deleteUser(String $userId)
     {
-        $response = $this->client->delete(
-            "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}",
-            [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
-                    'Content-Type' => 'application/json'
+        try{
+            $response = $this->client->delete(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
                 ]
-            ]
-        );
+            );
+            $this->ApiLogout();
+            return json_decode($response->getBody()->getContents());
 
-        return $response->getBody()->getContents();
+        }catch(\Exception $e){
+            
+            throw new \Exception($e->getMessage());
+        }
     }
 
     // Role Methods
 
     public function getRoles()
     {
-        $response = $this->client->get(
-            "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/",
-            [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
-                    'Content-Type' => 'application/json'
+        try{
+            $response = $this->client->get(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
                 ]
-            ]
-        );
+            );
+            $this->ApiLogout();
+            return json_decode($response->getBody()->getContents());
 
-        return $response->getBody()->getContents();
+        }catch(\Exception $e){
+            
+            throw new \Exception($e->getMessage());
+        }
+        
     }
 
     public function getRole(String $roleId)
     {
-        $response = $this->client->get(
-            "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/{$roleId}",
-            [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
-                    'Content-Type' => 'application/json'
+        try{
+            $response = $this->client->get(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/{$roleId}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
                 ]
-            ]
-        );
+            );
+            $this->ApiLogout();
+            return json_decode($response->getBody()->getContents());
 
-        return $response->getBody()->getContents();
+        }catch(\Exception $e){
+            
+            throw new \Exception($e->getMessage());
+        }
+        
     }
 
     public function storeRole(Role $role)
@@ -229,8 +262,9 @@ class KeycloakApi
                     'json' => $role->toArray()
                 ]
             );
+            $this->ApiLogout();
     
-            return $response->getBody()->getContents();
+            return json_decode($response->getBody()->getContents());
 
         }catch(\Exception $e){
             
@@ -240,34 +274,52 @@ class KeycloakApi
 
     public function updateRole(Role $role, String $roleName)
     {
-        $response = $this->client->post(
-            "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/{$roleName}",
-            [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
-                    'Content-Type' => 'application/json'
-                ],
-                'json' => $role->toArray()
-            ]
-        );
+        try{
 
-        return $response->getBody()->getContents();
+            $response = $this->client->post(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/{$roleName}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ],
+                    'json' => $role->toArray()
+                ]
+            );
+            $this->ApiLogout();
+            return json_decode($response->getBody()->getContents());
+
+        }catch(\Exception $e){
+            
+            throw new \Exception($e->getMessage());
+        }
+        
     }
     
 
     public function deleteRole(String $roleName)
     {
-        $response = $this->client->delete(
-            "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/{$roleName}",
-            [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
-                    'Content-Type' => 'application/json'
-                ]
-            ]
-        );
+        try{
 
-        return $response->getBody()->getContents();
+            $response = $this->client->delete(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/{$roleName}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+    
+            $this->ApiLogout();
+    
+            return $response->getBody()->getContents();
+
+        }catch(\Exception $e){
+            
+            throw new \Exception($e->getMessage());
+        }
+        
     }
 
     // Client Methods
@@ -289,7 +341,7 @@ class KeycloakApi
 
         }catch(\Exception $e){
                 
-                throw new \Exception($e->getMessage());
+            throw new \Exception($e->getMessage());
         }
     }
 
@@ -312,7 +364,7 @@ class KeycloakApi
 
         }catch(\Exception $e){
                 
-                throw new \Exception($e->getMessage());
+            throw new \Exception($e->getMessage());
         }
     }
 
@@ -355,7 +407,7 @@ class KeycloakApi
 
         }catch(\Exception $e){
                 
-                throw new \Exception($e->getMessage());
+            throw new \Exception($e->getMessage());
         }
     }
 
@@ -377,7 +429,7 @@ class KeycloakApi
 
         }catch(\Exception $e){
                 
-                throw new \Exception($e->getMessage());
+            throw new \Exception($e->getMessage());
         }
     }
 
@@ -398,7 +450,7 @@ class KeycloakApi
 
         }catch(\Exception $e){
                 
-                throw new \Exception($e->getMessage());
+            throw new \Exception($e->getMessage());
         }
     }
 

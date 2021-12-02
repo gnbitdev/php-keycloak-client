@@ -226,6 +226,28 @@ class KeycloakApi
         
     }
 
+    public function getRoleByUserId(String $userId)
+    {
+        try{
+            $response = $this->client->get(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}/role-mappings/realm",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+            
+            $this->ApiLogout();
+            return json_decode($response->getBody()->getContents());
+        
+        }catch(\Exception $e){
+                
+            throw new \Exception($e->getMessage());
+        }
+    }
+
     public function getRole(String $roleId)
     {
         try{

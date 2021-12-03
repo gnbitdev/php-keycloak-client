@@ -217,6 +217,7 @@ class KeycloakApi
                 ]
             );
             $this->ApiLogout();
+
             return json_decode($response->getBody()->getContents());
 
         }catch(\Exception $e){
@@ -240,6 +241,7 @@ class KeycloakApi
             );
             
             $this->ApiLogout();
+
             return json_decode($response->getBody()->getContents());
         
         }catch(\Exception $e){
@@ -261,6 +263,7 @@ class KeycloakApi
                 ]
             );
             $this->ApiLogout();
+
             return json_decode($response->getBody()->getContents());
 
         }catch(\Exception $e){
@@ -359,7 +362,7 @@ class KeycloakApi
                 ]
             );
     
-            return $response->getBody()->getContents();
+            return json_decode($response->getBody()->getContents());
 
         }catch(\Exception $e){
                 
@@ -382,7 +385,7 @@ class KeycloakApi
                 ]
             );
     
-            return $response->getBody()->getContents();
+            return json_decode($response->getBody()->getContents());
 
         }catch(\Exception $e){
                 
@@ -403,7 +406,7 @@ class KeycloakApi
                 ]
             );
     
-            return $response->getBody()->getContents();
+            return json_decode($response->getBody()->getContents());
 
         }catch(\Exception $e){
                 
@@ -425,7 +428,7 @@ class KeycloakApi
                 ]
             );
     
-            return $response->getBody()->getContents();
+            return json_decode($response->getBody()->getContents());
 
         }catch(\Exception $e){
                 

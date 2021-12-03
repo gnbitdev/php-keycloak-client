@@ -390,11 +390,33 @@ class KeycloakApi
         }
     }
 
-    public function getGroup(String $groupName)
+    public function getGroupByName(String $groupName)
     {
         try{
             $response = $this->client->get(
                 "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/groups/{$groupName}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+    
+            return $response->getBody()->getContents();
+
+        }catch(\Exception $e){
+                
+                throw new \Exception($e->getMessage());
+        }
+    }
+
+
+    public function getGroupById(String $groupId)
+    {
+        try{
+            $response = $this->client->get(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/groups/{$groupId}",
                 [
                     'headers' => [
                         'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),

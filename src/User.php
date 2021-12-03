@@ -19,7 +19,7 @@ class User
 
     // Getters y Setters
     
-    public function getUsername()
+    public function getUsername() : String
     {
         return $this->username;
     }
@@ -59,7 +59,7 @@ class User
         $this->emailVerified = $emailVerified;
     }
 
-    public function getFirstName()
+    public function getFirstName() : String
     {
         return $this->firstName;
     }
@@ -69,7 +69,7 @@ class User
         $this->firstName = $firstName;
     }
 
-    public function getLastName()
+    public function getLastName() : String
     {
         return $this->lastName;
     }
@@ -79,7 +79,7 @@ class User
         $this->lastName = $lastName;
     }
 
-    public function getEmail()
+    public function getEmail() : String
     {
         return $this->email;
     }
@@ -120,7 +120,7 @@ class User
     }
 
 
-    public function toArray()
+    public function toArray() : Array
     {
         $array = array();
 
@@ -135,9 +135,6 @@ class User
 
         return $array;
     }
-        
-
     
-
 
 }

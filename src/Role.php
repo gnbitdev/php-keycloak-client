@@ -4,19 +4,30 @@ namespace KeycloakApiClient;
 class Role
 {
     ## attributes
+    public $id;
     private $name;
     private $description;
 
     ## constructor
-    public function __construct($name=null, $description=null)
+    public function __construct($id='', $name='', $description='')
     {
+        $this->id = $id;
         $this->name = $name;
         $this->description = $description;
     }
 
     ## getters and setters
+    public function getId() : String
+    {
+        return $this->id;
+    }
 
-    public function getName()
+    public function setId(String $id)
+    {
+        $this->id = $id;
+    }
+
+    public function getName() : String
     {
         return $this->name;
     }
@@ -26,7 +37,7 @@ class Role
         $this->name = $name;
     }
 
-    public function getDescription()
+    public function getDescription() : String
     {
         return $this->description;
     }
@@ -36,9 +47,10 @@ class Role
         $this->description = $description;
     }
 
-    public function toArray()
+    public function toArray() : Array
     {
         return array(
+            'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description
         );

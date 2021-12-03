@@ -12,11 +12,27 @@ class User
     private $email;
     private $attributes;
 
-    public function __construct()
+    public function __construct(
+        String $username='',
+        String $enabled='',
+        String $totp='',
+        String $emailVerified='',
+        String $firstName='',
+        String $lastName='',
+        String $email='',
+        Array $attributes=[]
+    ) 
     {
-        
+        $this->username = $username;
+        $this->enabled = $enabled;
+        $this->totp = $totp;
+        $this->emailVerified = $emailVerified;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->email = $email;
+        $this->attributes = $attributes;
     }
-
+    
     // Getters y Setters
     
     public function getUsername() : String
@@ -24,37 +40,37 @@ class User
         return $this->username;
     }
 
-    public function setUsername($username)
+    public function setUsername($username) : void
     {
         $this->username = $username;
     }
 
-    public function getEnabled()
+    public function getEnabled() : String
     {
         return $this->enabled;
     }
 
-    public function setEnabled($enabled)
+    public function setEnabled($enabled) : void
     {
         $this->enabled = $enabled;
     }
 
-    public function getTotp()
+    public function getTotp() : String
     {
         return $this->totp;
     }
 
-    public function setTotp($totp)
+    public function setTotp($totp) : void
     {
         $this->totp = $totp;
     }
 
-    public function getEmailVerified()
+    public function getEmailVerified() : String
     {
         return $this->emailVerified;
     }
 
-    public function setEmailVerified($emailVerified)
+    public function setEmailVerified($emailVerified) : void
     {
         $this->emailVerified = $emailVerified;
     }
@@ -64,7 +80,7 @@ class User
         return $this->firstName;
     }
 
-    public function setFirstName($firstName)
+    public function setFirstName($firstName) : void
     {
         $this->firstName = $firstName;
     }
@@ -74,7 +90,7 @@ class User
         return $this->lastName;
     }
 
-    public function setLastName($lastName)
+    public function setLastName($lastName) : void
     {
         $this->lastName = $lastName;
     }
@@ -84,17 +100,17 @@ class User
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail($email) : void
     {
         $this->email = $email;
     }
 
-    public function getAttributes()
+    public function getAttributes() : Array
     {
         return $this->attributes;
     }
 
-    public function setAttributes($attributes)
+    public function setAttributes($attributes) : void
     {
         $this->attributes = $attributes;
     }

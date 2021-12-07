@@ -250,11 +250,34 @@ class KeycloakApi
         }
     }
 
-    public function getRole(String $roleId)
+    public function getRoleByName(String $roleId)
     {
         try{
             $response = $this->client->get(
                 "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/{$roleId}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+            $this->ApiLogout();
+
+            return json_decode($response->getBody()->getContents());
+
+        }catch(\Exception $e){
+            
+            throw new \Exception($e->getMessage());
+        }
+        
+    }
+
+    public function getRoleById(String $roleId)
+    {
+        try{
+            $response = $this->client->get(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles-by-id/{$roleId}",
                 [
                     'headers' => [
                         'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
@@ -297,12 +320,37 @@ class KeycloakApi
         }
     }
 
-    public function updateRole(Role $role, String $roleName)
+    public function updateRoleByName(Role $role, String $roleName)
     {
         try{
 
-            $response = $this->client->post(
+            $response = $this->client->put(
                 "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/{$roleName}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ],
+                    'json' => $role->toArray()
+                ]
+            );
+            $this->ApiLogout();
+            return json_decode($response->getBody()->getContents());
+
+        }catch(\Exception $e){
+            
+            throw new \Exception($e->getMessage());
+        }
+        
+    }
+
+
+    public function updateRoleById(Role $role, String $roleId)
+    {
+        try{
+
+            $response = $this->client->put(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles-by-id/{$roleId}",
                 [
                     'headers' => [
                         'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
@@ -322,12 +370,37 @@ class KeycloakApi
     }
     
 
-    public function deleteRole(String $roleName)
+    public function deleteRoleByName(String $roleName)
     {
         try{
 
             $response = $this->client->delete(
                 "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles/{$roleName}",
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+    
+            $this->ApiLogout();
+    
+            return $response->getBody()->getContents();
+
+        }catch(\Exception $e){
+            
+            throw new \Exception($e->getMessage());
+        }
+        
+    }
+
+    public function deleteRoleById(String $roleId)
+    {
+        try{
+
+            $response = $this->client->delete(
+                "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/roles-by-id/{$roleId}",
                 [
                     'headers' => [
                         'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),

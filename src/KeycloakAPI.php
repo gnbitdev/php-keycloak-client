@@ -163,7 +163,7 @@ class KeycloakApi
 
         try{
             
-            $response = $this->client->post("{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}", 
+            $response = $this->client->put("{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}", 
             [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
@@ -534,7 +534,7 @@ class KeycloakApi
     public function updateGroup(Group $group, String $groupName)
     {
         try{
-            $response = $this->client->post(
+            $response = $this->client->put(
                 "{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/groups/{$groupName}",
                 [
                     'headers' => [

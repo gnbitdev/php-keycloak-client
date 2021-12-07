@@ -67,10 +67,10 @@ class Group
     public function toArray() : Array
     {
         return [
-            'id' => $this->id,
+            'id' => empty($this->id) ? null : $this->id,
             'name' => $this->name,
             'path' => $this->path,
-            'subgroups' => $this->subgroups
+            'attributes' => (Object)$this->attributes
         ];
     }
 }

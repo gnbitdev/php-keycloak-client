@@ -73,7 +73,7 @@ class Role
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'attributes' => $this->attributes
+            'attributes' => (Object)$this->attributes
         );
     }
 

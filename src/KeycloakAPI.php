@@ -202,6 +202,29 @@ class KeycloakApi
         }
     }
 
+    public function toggleUserEnabled(String $userId, bool $enabled)
+    {
+        try{
+            $response = $this->client->put("{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}",
+            [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),
+                    'Content-Type' => 'application/json'
+                ],
+                'json' => [
+                    'enabled' => $enabled
+                ]
+            ]);
+            $this->ApiLogout();
+
+            return json_decode($response->getBody()->getContents());
+
+        }catch(\Exception $e){
+
+            throw new \Exception($e->getMessage());
+        }
+    }
+
     // Role Methods
 
     public function getRoles()

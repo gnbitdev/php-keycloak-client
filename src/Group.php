@@ -66,10 +66,17 @@ class Group
 
     public function toArray() : Array
     {
+        $subGroups = [];
+
+        foreach($this->subgroups as $subgroup) {
+            $subGroups[] = (Object)$subgroup;
+        }
+
         return [
             'id' => empty($this->id) ? null : $this->id,
             'name' => $this->name,
             'path' => $this->path,
+            'subGroups' => $subGroups,
             'attributes' => (Object)$this->attributes
         ];
     }

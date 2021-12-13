@@ -91,7 +91,7 @@ class KeycloakApi
 
     public function setUserPassword( String $userId, bool $isTemporary, String $password)
     {
-        $response = $this->client->post("{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}/reset-password", 
+        $response = $this->client->put("{$this->entity->getBaseUrl()}{$this->entity->getBasePath()}/{$this->entity->getRealm()}/users/{$userId}/reset-password", 
         [
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->ApiAuthenticate(),

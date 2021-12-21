@@ -1,7 +1,7 @@
 <?php
 namespace KeycloakApiClient;
 
-class User 
+class User
 {
     private $username;
     private $enabled;
@@ -11,6 +11,7 @@ class User
     private $lastName;
     private $email;
     private $attributes;
+    private $realmRoles;
 
     public function __construct(
         String $username='',
@@ -21,7 +22,7 @@ class User
         String $lastName='',
         String $email='',
         Array $attributes=[]
-    ) 
+    )
     {
         $this->username = $username;
         $this->enabled = $enabled;
@@ -31,10 +32,11 @@ class User
         $this->lastName = $lastName;
         $this->email = $email;
         $this->attributes = $attributes;
+        $this->realmRoles = [];
     }
-    
+
     // Getters y Setters
-    
+
     public function getUsername() : String
     {
         return $this->username;
@@ -136,6 +138,17 @@ class User
     }
 
 
+    public function getRealmRoles() : Array
+    {
+        return $this->realmRoles;
+    }
+
+    public function setRealmRoles(Array $realmRoles) : void
+    {
+        $this->realmRoles = $realmRoles;
+    }
+
+
     public function toArray() : Array
     {
         $array = array();
@@ -148,9 +161,10 @@ class User
         $array['lastName'] = $this->lastName;
         $array['email'] = $this->email;
         $array['attributes'] = $this->attributes;
+        $array['realmRoles'] = $this->realmRoles;
 
         return $array;
     }
-    
+
 
 }

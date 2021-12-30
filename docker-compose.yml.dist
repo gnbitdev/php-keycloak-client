@@ -1,0 +1,10 @@
+version: '2.2'
+
+services:
+  keycloak-sdk:
+    image: gnbit/php7.2.15-apache
+    container_name: keycloak-sdk.do
+    ports:
+      - 7116:80
+    volumes:
+      - .:/var/www    

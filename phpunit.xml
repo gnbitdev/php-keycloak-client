@@ -11,4 +11,16 @@
             <directory>./test/integration</directory>
         </testsuite>
     </testsuites>
+    
+    <php>
+        <!-- Integration Test Variables -->
+        <env name="kC_API_USERNAME" value="apirest-client" />
+        <env name="kC_API_PASSWORD" value="gnbitgnbit" />
+        <env name="kC_API_GTYPE" value="password" />
+        <env name="kC_API_CLIENT_ID" value="api-rest" />
+        <env name="kC_API_CLIENT_SECRET" value="C61zuXPNYLa21T9VOidcfcFpVjpAQTG5" />
+        
+        <env name="kC_API_BASEURL" value="http://192.168.10.78:6033" />
+        <env name="kC_API_REALM" value="prevensys" />
+    </php>
 </phpunit>

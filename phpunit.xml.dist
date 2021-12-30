@@ -11,4 +11,15 @@
             <directory>./test/integration</directory>
         </testsuite>
     </testsuites>
+    
+    <php>
+        <!-- Integration Test Variables -->
+        <env name="kC_API_USERNAME" value="apirest-client" />
+        <env name="kC_API_PASSWORD" value="secret" />
+        <env name="kC_API_GTYPE" value="password" />
+        <env name="kC_API_CLIENT_ID" value="api-client_id" />
+        <env name="kC_API_CLIENT_SECRET" value="mysecret" />
+        
+        <env name="kC_API_ENDPOINT" value="http://localhost:8080/auth/realms/testrealm/protocol/openid-connect/token" />
+    </php>
 </phpunit>

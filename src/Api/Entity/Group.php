@@ -1,9 +1,12 @@
 <?php
+namespace KeycloakApiClient\Api\Entity;
 
-namespace KeycloakApiClient;
+use Alabra\Entity\EntityTrait;
+use Alabra\Entity\EntityInterface;
 
-class Group
+class Group implements EntityInterface
 {
+    use EntityTrait;
 
     private $id;
     private $name;
@@ -23,51 +26,6 @@ class Group
         $this->name       = $name;
         $this->path       = $path;
         $this->subgroups  = $subgroups;
-        $this->attributes = $attributes;
-    }
-
-    public function getId(): String
-    {
-        return $this->id;
-    }
-
-    public function getName(): String
-    {
-        return $this->name;
-    }
-
-    public function getPath(): String
-    {
-        return $this->path;
-    }
-
-    public function getSubgroups(): Array
-    {
-        return $this->subgroups;
-    }
-
-    public function setName(String $name): void
-    {
-        $this->name = $name;
-    }
-
-    public function setPath(String $path): void
-    {
-        $this->path = $path;
-    }
-
-    public function setSubgroups(Array $subgroups): void
-    {
-        $this->subgroups = $subgroups;
-    }
-
-    public function getAttributes(): Array
-    {
-        return $this->attributes;
-    }
-
-    public function setAttributes(Array $attributes): void
-    {
         $this->attributes = $attributes;
     }
 

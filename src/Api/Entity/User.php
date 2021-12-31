@@ -1,5 +1,4 @@
 <?php
-
 namespace KeycloakApiClient\Api\Entity;
 
 use Alabra\Entity\EntityTrait;

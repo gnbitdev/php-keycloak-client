@@ -5,5 +5,5 @@ namespace KeycloakApiClient\Exception;
 
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {
-
+    
 }

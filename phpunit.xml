@@ -14,13 +14,13 @@
     
     <php>
         <!-- Integration Test Variables -->
-        <env name="kC_API_USERNAME" value="apirest-client" />
-        <env name="kC_API_PASSWORD" value="gnbitgnbit" />
+        <env name="kC_API_USERNAME" value="rest" />
+        <env name="kC_API_PASSWORD" value="123123123" />
         <env name="kC_API_GTYPE" value="password" />
-        <env name="kC_API_CLIENT_ID" value="api-rest" />
-        <env name="kC_API_CLIENT_SECRET" value="C61zuXPNYLa21T9VOidcfcFpVjpAQTG5" />
+        <env name="kC_API_CLIENT_ID" value="rest-client" />
+        <env name="kC_API_CLIENT_SECRET" value="f7ad5791-60ea-4ed1-9aa7-afc5a977da75" />
         
-        <env name="kC_API_BASEURL" value="http://192.168.10.78:6033" />
-        <env name="kC_API_REALM" value="prevensys" />
+        <env name="kC_API_BASEURL" value="http://192.168.10.78:6030" />
+        <env name="kC_API_REALM" value="demo" />
     </php>
 </phpunit>

@@ -1,7 +1,5 @@
 <?php
-
 namespace KeycloakApiClient\Api\Entity;
-
 class UserFactory
 {
 

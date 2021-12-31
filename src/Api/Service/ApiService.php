@@ -94,7 +94,7 @@ class ApiService
         }, $users);
     }
 
-    public function storeUser(User $user) : User
+    public function createUser(User $user) : User
     {
         try{
 
@@ -237,7 +237,7 @@ class ApiService
         return RoleFactory::make($role);
     }
     
-    public function storeRole(Role $role) : Role
+    public function createRole(Role $role) : Role
     {
         try{
 
@@ -370,7 +370,7 @@ class ApiService
         return GroupFactory::make($group);
     }
     
-    public function storeGroup(Group $group) : Group
+    public function createGroup(Group $group) : Group
     {
         try{
 

@@ -11,6 +11,7 @@ class ApiTest extends TestCase
 {
 
     private $clientApi;
+    private $userIds = [];
 
     protected function setUp()
     {
@@ -24,27 +25,52 @@ class ApiTest extends TestCase
         );
 
         $conection = new Connection(
-             getenv('kC_API_BASEURL'),
-             getenv('kC_API_REALM'),
+            getenv('kC_API_BASEURL'),
+            getenv('kC_API_REALM'),
             $credentials
         );
 
-        $this->clientApi = new ApiService ($conection);
+        $this->clientApi = new ApiService($conection);
     }
 
     public function testUsers()
     {
         $users = $this->clientApi->getUsers();
+        foreach ($users as $user) {
+            self::assertIsObject($user);
+            self::assertInternalType('string', $user->id);
 
-        //print_r($users);
-        self::assertInternalType('int', 1);
+            $data = $this->clientApi->getUser($user->id);
+            self::assertIsObject($data);
+        }
+
+        self::assertIsArray($users);
     }
 
-    public function testUser()
+    public function xtestDipslayUsers()
     {
-        $user = $this->clientApi->getUser("08edcd2d-4c74-4873-842f-5b82ec4b05c5");
+        $users = $this->clientApi->getUsers();
+        fwrite(STDERR, print_r($users, TRUE));
 
-        print_r($user);
         self::assertInternalType('int', 1);
     }
+
+    public function xtestDipslayUser()
+    {
+        $user = $this->clientApi->getUser("a2a6a4ab-0ee5-4213-8942-31aee4c81f48");
+        fwrite(STDERR, print_r($user, TRUE));
+
+        self::assertInternalType('int', 1);
+    }
+
+
+     public function xtestDipslayUser()
+    {
+        $user = $this->clientApi->getUser("a2a6a4ab-0ee5-4213-8942-31aee4c81f48");
+        fwrite(STDERR, print_r($user, TRUE));
+
+        self::assertInternalType('int', 1);
+    }
+
+
 }

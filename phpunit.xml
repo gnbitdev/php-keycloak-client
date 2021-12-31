@@ -18,7 +18,7 @@
         <env name="kC_API_PASSWORD" value="123123123" />
         <env name="kC_API_GTYPE" value="password" />
         <env name="kC_API_CLIENT_ID" value="rest-client" />
-        <env name="kC_API_CLIENT_SECRET" value="f7ad5791-60ea-4ed1-9aa7-afc5a977da75" />
+        <env name="kC_API_CLIENT_SECRET" value="926e6aa9-27b1-426f-a8a6-dd18e1d686da" />
         
         <env name="kC_API_BASEURL" value="http://192.168.10.78:6030" />
         <env name="kC_API_REALM" value="demo" />

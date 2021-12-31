@@ -102,9 +102,7 @@ class ApiService
 
             if($response->getStatusCode() == 201)
             {   
-                $res = $this->request('GET', 'users?username='.$user->username);
-
-                return UserFactory::make($res);
+                return $this->getUserByUsername($user->username);
             }
 
             throw new Exception('Error creating user');
@@ -113,6 +111,13 @@ class ApiService
          
             throw new Exception($e->getMessage());
         }    
+    }
+
+    public function getUserByUsername(String $username)
+    {
+        $response = $this->request('GET', "users?username=$username");
+
+        return UserFactory::make($response);
     }
 
     public function updateUser(User $user, String $userId)

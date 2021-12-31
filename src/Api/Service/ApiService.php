@@ -45,35 +45,33 @@ class ApiService
         }, $users);
     }
 
-    public function createUser(User $user) : User
+    public function createUser(Array $user) : User
     {
         
-
-        $response = $this->request('POST', 'users', $user->toArray());
+        $response = $this->request('POST', 'users', $user);
 
         if($response->getStatusCode() == 201)
         {   
-            return $this->getUserByUsername($user->username);
+            return $this->getUserByUsername($user['username']);
         }
 
-        throw new Exception('Error creating user');
-
-       
+        throw new Exception('Error creating user');       
     }
+
 
     public function getUserByUsername(string $username)
     {
         $response = $this->request('GET', "users?username=$username");
 
-        return UserFactory::make($response);
+        return !empty($response) ? UserFactory::make($response[0]) : null;
     }
 
-    public function updateUser(User $user, string $userId)
+    public function updateUser(array $user, string $userId)
     {
         
-        $response = $this->request('PUT', "users/$userId", $user->toArray());
+        $response = $this->request('PUT', "users/$userId", $user);
 
-        if($response->getStatusCode() == 200)
+        if($response->getStatusCode() == 204)
         {   
             $res = $this->request('GET', "users/$userId");
 
@@ -167,14 +165,14 @@ class ApiService
         return RoleFactory::make($role);
     }
     
-    public function createRole(Role $role) : Role
+    public function createRole(array $role) : Role
     {
         
-        $response = $this->request('POST', 'roles', $role->toArray());
+        $response = $this->request('POST', 'roles', $role);
 
         if($response->getStatusCode() == 201)
         {   
-            return $this->getRoleByName($role->name);
+            return $this->getRoleByName($role['name']);
         }
 
         throw new Exception('Error creating role');
@@ -182,9 +180,9 @@ class ApiService
 
     
 
-    public function updateRoleByName(Role $role, string $roleName)
+    public function updateRoleByName(array $role, string $roleName)
     {
-        $response = $this->request('PUT', "roles/{$roleName}", $role->toArray());
+        $response = $this->request('PUT', "roles/{$roleName}", $role);
 
         if($response->getStatusCode() == 200)
         {   
@@ -194,9 +192,9 @@ class ApiService
         throw new Exception('Error updating role');  
     }
 
-    public function updateRoleById(Role $role, string $roleId)
+    public function updateRoleById(array $role, string $roleId)
     {
-        $response = $this->request('PUT', "roles-by-id/{$roleId}", $role->toArray());
+        $response = $this->request('PUT', "roles-by-id/{$roleId}", $role);
 
         if($response->getStatusCode() == 200)
         {   
@@ -254,6 +252,8 @@ class ApiService
 
         return GroupFactory::make($group);
     }
+
+
     
     public function getGroupById(string $id): Group
     {
@@ -261,32 +261,35 @@ class ApiService
 
         return GroupFactory::make($group);
     }
+
+
     
-    public function createGroup(Group $group) : Group
+    public function createGroup(array $group) : Group
     {
         
-        $response = $this->request('POST', 'groups', $group->toArray());
+        $response = $this->request('POST', 'groups', $group);
 
         if($response->getStatusCode() == 201)
         {   
-            return $this->getGroupByName($group->name);
+            return $this->getGroupByName($group['name']);
         }
 
         throw new Exception('Error creating group');       
     }
 
-    public function updateGroup(Group $group, string $groupName)
+
+
+    public function updateGroup(array $group, string $groupName)
     {
         
-        $response = $this->request('PUT', "groups/{$groupName}", $group->toArray());
+        $response = $this->request('PUT', "groups/{$groupName}", $group);
 
         if($response->getStatusCode() == 200)
         {   
             return $this->getGroupByName($groupName);
         }
 
-        throw new Exception('Error updating group');
-         
+        throw new Exception('Error updating group');    
     }
 
 
@@ -301,9 +304,6 @@ class ApiService
 
         throw new Exception('Error deleting group');
     }
-
-
-    // Request n Authentication
 
     
     public function getToken(): Token

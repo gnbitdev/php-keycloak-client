@@ -6,7 +6,7 @@ class UserFactory
     public static function make(array $item): User
     {
         return new User(
-            $item['id'],
+            $item['id'] ?? null,
             $item['username'],
             (bool) $item['enabled'],
             (bool) $item['totp'],

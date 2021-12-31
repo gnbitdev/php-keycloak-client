@@ -16,10 +16,10 @@ class Role implements EntityInterface
 
     ## constructor
     public function __construct(
-        String $id='', 
-        String $name='', 
-        String $description='', 
-        Array $attributes=[]
+        string $id, 
+        string $name, 
+        string $description, 
+        array $attributes
     )
     {
         $this->id = $id;

@@ -9,7 +9,7 @@ class RoleFactory
             $data['id'],
             $data['name'],
             $data['description'],
-            $data['attributes']
+            $data['attributes'] ?? []
         );
     }
 }

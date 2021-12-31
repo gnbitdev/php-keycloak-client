@@ -9,8 +9,8 @@ class GroupFactory
             $data['id'],
             $data['name'],
             $data['path'],
-            $data['subgroups'],
-            $data['attributes']
+            $data['subgroups'] ?? [],
+            $data['attributes'] ?? []
         );
     }
 }

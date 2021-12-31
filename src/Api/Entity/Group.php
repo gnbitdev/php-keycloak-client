@@ -18,8 +18,8 @@ class Group implements EntityInterface
         string $id,
         string $name,
         string $path,
-        array $subgroups = [],
-        array $attributes = []
+        array $subgroups,
+        array $attributes
     )
     {
         $this->id         = $id;

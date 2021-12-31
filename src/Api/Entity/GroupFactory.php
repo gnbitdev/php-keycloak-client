@@ -9,8 +9,16 @@ class GroupFactory
             $data['id'],
             $data['name'],
             $data['path'],
-            $data['subgroups'] ?? [],
-            $data['attributes'] ?? []
+            self::subgroups( $data['subgroups'] ?? [] ),
+            (object) $data['attributes']
         );
     }
+
+    private static function subgroups(array $subgroups) : array
+    {
+        return array_map(function ($subgroup) {
+            return self::make($subgroup);
+        }, $subgroups);
+    }
+    
 }

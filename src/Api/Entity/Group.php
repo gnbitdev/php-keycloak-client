@@ -19,7 +19,7 @@ class Group implements EntityInterface
         string $name,
         string $path,
         array $subgroups,
-        array $attributes
+        object $attributes
     )
     {
         $this->id         = $id;
@@ -27,22 +27,5 @@ class Group implements EntityInterface
         $this->path       = $path;
         $this->subgroups  = $subgroups;
         $this->attributes = $attributes;
-    }
-
-    public function toArray(): Array
-    {
-        $subGroups = [];
-
-        foreach ($this->subgroups as $subgroup) {
-            $subGroups[] = (Object) $subgroup;
-        }
-
-        return [
-            'id'         => empty($this->id) ? null : $this->id,
-            'name'       => $this->name,
-            'path'       => $this->path,
-            'subGroups'  => $subGroups,
-            'attributes' => (Object) $this->attributes
-        ];
     }
 }

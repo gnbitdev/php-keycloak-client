@@ -247,7 +247,6 @@ class KeycloakApi
 
             throw new \Exception($e->getMessage());
         }
-
     }
 
     public function getRoleByUserId(String $userId)

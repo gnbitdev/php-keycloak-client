@@ -196,7 +196,7 @@ class ApiService
     {
         $response = $this->request('PUT', "roles-by-id/{$roleId}", $role);
 
-        if($response->getStatusCode() == 200)
+        if($response->getStatusCode() == 204)
         {   
             return $this->getRoleById($roleId);
         }
@@ -255,22 +255,29 @@ class ApiService
 
 
     
-    public function createGroup(array $group) : Group
+    public function createGroup(array $group) : bool
     {
         
         $response = $this->request('POST', 'groups', $group);
 
         if($response->getStatusCode() == 201)
         {   
-            return $this->getGroupById($group['name']);
+            return true;
         }
 
         throw new Exception('Error creating group');       
     }
 
 
+    public function getLastCreatedGroup()
+    {
+        $groups = $this->getGroups();
 
-    public function updateGroup(array $group, string $groupId)
+        return !empty(array_pop($groups)) ? GroupFactory::make(array_pop($groups)) : null;
+    }
+
+
+    public function updateGroupById(array $group, string $groupId)
     {
         
         $response = $this->request('PUT', "groups/{$groupId}", $group);
@@ -320,6 +327,8 @@ class ApiService
             $token['scope']
         );
     }
+
+    
 
     private function request(string $method, string $uri, array $data = [] )
     {

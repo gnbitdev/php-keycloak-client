@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use KeycloakApiClient\Api\Service\ApiService;
 use KeycloakApiClient\Api\Entity\Connection;
 use KeycloakApiClient\Api\Entity\Credentials;
+use KeycloakApiClient\Api\Entity\Role;
 use KeycloakApiClient\Api\Entity\User;
 
 class ApiTest extends TestCase
@@ -13,7 +14,7 @@ class ApiTest extends TestCase
 
     private $clientApi;
 
-    const UNIQUE_ID = 6661;
+    const UNIQUE_ID = 6666;
 
     protected function setUp()
     {
@@ -64,7 +65,7 @@ class ApiTest extends TestCase
         self::assertInternalType('int', 1);
     }
 
-    public function testCreateUser()
+    public function xtestCreateUser()
     {
         
         $user = [
@@ -91,14 +92,14 @@ class ApiTest extends TestCase
 
     }
     
-    public function testGetUserByUsername()
+    public function xtestGetUserByUsername()
     {
         $user = $this->clientApi->getUserByUsername('test_user_' . self::UNIQUE_ID);
         self::assertIsObject($user);
         self::assertInstanceOf(User::class, $user);
     }
 
-    public function testUpdateUser()
+    public function xtestUpdateUser()
     {
         $user = $this->clientApi->getUserByUsername('test_user_' . self::UNIQUE_ID);
         $update = $user->toArray();
@@ -108,7 +109,7 @@ class ApiTest extends TestCase
 
     }
 
-    public function testToggleUserEnabled()
+    public function xtestToggleUserEnabled()
     {
         $user = $this->clientApi->getUserByUsername('test_user_' . self::UNIQUE_ID);
         
@@ -117,7 +118,7 @@ class ApiTest extends TestCase
         self::assertTrue($res);
     }
 
-    public function testDeleteUser()
+    public function xtestDeleteUser()
     {
         
         $user = $this->clientApi->getUserByUsername('test_user_' . self::UNIQUE_ID);
@@ -128,18 +129,17 @@ class ApiTest extends TestCase
 
     /**GROUP TESTS */
 
-    public function testCreateGroup()
+    public function xtestCreateGroup()
     {
         
         $group = [
             'name' => 'test_group_' . self::UNIQUE_ID,
-            'attributes' => [
-                'phone' => '+1-555-555-5555',
-                'address' => '123 Main St.',
-                'city' => 'Anytown',
-                'state' => 'CA',
-                'zip' => '12345',
-                'country' => 'US',
+            'attributes' => (Object)[
+                'phone' => ['+1-555-555-5555'],
+                'address' => ['123 Main St.'],
+                'city' => ['Anytown'],
+                'state' => ['CA'],
+                'zip' => ['12345']                
             ],
         ];
         
@@ -147,12 +147,12 @@ class ApiTest extends TestCase
 
         self::assertIsObject($res);
         self::assertInstanceOf(Group::class, $res);
-
     }
 
-    public function testGetGroups()
+    public function xtestGetGroups()
     {
         $groups = $this->clientApi->getGroups();
+
         foreach ($groups as $group) {
             self::assertIsObject($group);
             self::assertInternalType('string', $group->id);
@@ -165,26 +165,33 @@ class ApiTest extends TestCase
     }
 
 
-    public function testGetGroup()
+    public function xtestGetGroupById()
     {
-        $group = $this->clientApi->getGroup("test_group_" . self::UNIQUE_ID);
+        $group = $this->clientApi->getGroupById("701fa9a5-71f7-45d9-8bcd-e81ed95ba067");
         self::assertIsObject($group);
         self::assertInstanceOf(Group::class, $group);
     }
 
-    public function testUpdateGroup()
+    public function xtestUpdateGroup()
     {
         $group = $this->clientApi->getGroupByName("test_group_" . self::UNIQUE_ID);
-        $update = $group->toArray();
+
+        $update = [
+            'name' => 'test_group_' . self::UNIQUE_ID,
+            'attributes' => (Object)[
+                'phone' => ['+1-555-555-5555'],
+                'address' => ['123 Main St.']              
+            ],
+        ];
         
-        $res = $this->clientApi->updateGroup($update, $group->id);
+        $res = $this->clientApi->updateGroup($update, $group->name);
     
         self::assertIsObject($res);
         self::assertInstanceOf(Group::class, $res);
     
     }
 
-    public function testDeleteGroup()
+    public function xtestDeleteGroup()
     {
         $group = $this->clientApi->getGroupByName("test_group_" . self::UNIQUE_ID);
         $res = $this->clientApi->deleteGroup($group->id);
@@ -198,15 +205,7 @@ class ApiTest extends TestCase
     {
         $role = [
             'name' => 'test_role_' . self::UNIQUE_ID,
-            'description' => 'test_role_' . self::UNIQUE_ID,
-            'attributes' => [
-                'phone' => '+1-555-555-5555',
-                'address' => '123 Main St.',
-                'city' => 'Anytown',
-                'state' => 'CA',
-                'zip' => '12345',
-                'country' => 'US',
-            ],
+            'description' => 'test_role_' . self::UNIQUE_ID
         ];
         
         $res = $this->clientApi->createRole($role);

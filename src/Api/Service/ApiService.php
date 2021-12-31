@@ -245,16 +245,7 @@ class ApiService
 
     }
 
-    
-    public function getGroupByName(string $groupName)
-    {
-        $group = $this->request('GET', "groups/{$groupName}");
-
-        return GroupFactory::make($group);
-    }
-
-
-    
+     
     public function getGroupById(string $id): Group
     {
         $group = $this->request('GET', "groups/$id");
@@ -271,7 +262,7 @@ class ApiService
 
         if($response->getStatusCode() == 201)
         {   
-            return $this->getGroupByName($group['name']);
+            return $this->getGroupById($group['name']);
         }
 
         throw new Exception('Error creating group');       
@@ -279,23 +270,23 @@ class ApiService
 
 
 
-    public function updateGroup(array $group, string $groupName)
+    public function updateGroup(array $group, string $groupId)
     {
         
-        $response = $this->request('PUT', "groups/{$groupName}", $group);
+        $response = $this->request('PUT', "groups/{$groupId}", $group);
 
         if($response->getStatusCode() == 200)
         {   
-            return $this->getGroupByName($groupName);
+            return $this->getGroupById($groupId);
         }
 
         throw new Exception('Error updating group');    
     }
 
 
-    public function deleteGroupByName(string $groupName)
+    public function deleteGroupById(string $groupId)
     {
-        $response = $this->request('DELETE', "groups/{$groupName}");
+        $response = $this->request('DELETE', "groups/{$groupId}");
 
         if($response->getStatusCode() == 204)
         {   

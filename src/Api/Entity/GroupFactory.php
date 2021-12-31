@@ -9,8 +9,8 @@ class GroupFactory
             $data['id'],
             $data['name'],
             $data['path'],
-            self::subgroups( $data['subgroups'] ?? [] ),
-            (object) $data['attributes']
+            self::subgroups( !empty($data['subGroups']) ? $data['subGroups'] : [] ),
+            !empty($data['attributes']) ? (object)$data['attributes'] : (object)[]
         );
     }
 

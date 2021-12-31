@@ -14,7 +14,7 @@ class ApiTest extends TestCase
 
     private $clientApi;
 
-    const UNIQUE_ID = 6667;
+    const UNIQUE_ID = 88889;
 
     protected function setUp()
     {
@@ -52,7 +52,7 @@ class ApiTest extends TestCase
     public function testDisplayUsers()
     {
         $users = $this->clientApi->getUsers();
-        fwrite(STDERR, print_r($users, TRUE));
+        // fwrite(STDERR, print_r($users, TRUE));
 
         self::assertInternalType('int', 1);
     }
@@ -60,7 +60,7 @@ class ApiTest extends TestCase
     public function testDisplayUser()
     {
         $user = $this->clientApi->getUser("a2a6a4ab-0ee5-4213-8942-31aee4c81f48");
-        fwrite(STDERR, print_r($user, TRUE));
+        // fwrite(STDERR, print_r($user, TRUE));
 
         self::assertInternalType('int', 1);
     }
@@ -208,7 +208,7 @@ class ApiTest extends TestCase
          
          $res = $this->clientApi->createGroup($group);
  
-         self::asserTrue($res);
+         self::assertTrue($res);
      }
  
      public function testGetGroups()
@@ -218,7 +218,6 @@ class ApiTest extends TestCase
  
          foreach ($groups as $group) {
              self::assertIsObject($group);
-             self::assertInternalType('string', $group->id);
  
              $data = $this->clientApi->getGroupById($group->id);
              self::assertIsObject($data);
@@ -229,7 +228,7 @@ class ApiTest extends TestCase
  
      public function xtestUpdateGroup()
      {
-         $group = $this->clientApi->getGroupById("test_group_" . self::UNIQUE_ID);
+        //  $group = $this->clientApi->getGroupById("test_group_" . self::UNIQUE_ID);
  
          $update = [
              'name' => 'test_group_' . self::UNIQUE_ID,
@@ -239,7 +238,7 @@ class ApiTest extends TestCase
              ],
          ];
          
-         $res = $this->clientApi->updateGroup($update, $group->name);
+         $res = $this->clientApi->updateGroupById($update, "8316bf07-be29-4f15-a937-471a61328c7f");
      
          self::assertIsObject($res);
          self::assertInstanceOf(Group::class, $res);
@@ -248,8 +247,7 @@ class ApiTest extends TestCase
  
      public function xtestDeleteGroup()
      {
-         $group = $this->clientApi->getGroupByName("test_group_" . self::UNIQUE_ID);
-         $res = $this->clientApi->deleteGroup($group->id);
+         $res = $this->clientApi->deleteGroup("8316bf07-be29-4f15-a937-471a61328c7f");
      
          self::assertTrue($res);
      }

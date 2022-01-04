@@ -35,7 +35,7 @@ class Token implements EntityInterface
         int $refreshExpiresIn,
         string $refreshToken,
         string $tokenType,
-        string $notBeforePolicy,
+        int $notBeforePolicy,
         string $scope
     )
     {

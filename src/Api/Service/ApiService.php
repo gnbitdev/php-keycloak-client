@@ -54,7 +54,7 @@ class ApiService
             return $this->getUserByUsername($user['username']);
         }
 
-        throw new Exception('Error creating user');
+        throw new ApiException('Error creating user');
     }
 
     public function getUserByUsername(string $username)
@@ -89,7 +89,7 @@ class ApiService
             return true;
         }
 
-        throw new Exception('Error setting user password');
+        throw new ApiException('Error setting user password');
     }
 
     public function toggleUserEnabled(string $userId, bool $enabled)
@@ -115,7 +115,7 @@ class ApiService
             return true;
         }
 
-        throw new Exception('Error deleting user');
+        throw new ApiException('Error deleting user');
     }
 
     /**
@@ -162,7 +162,7 @@ class ApiService
             return $this->getRoleByName($role['name']);
         }
 
-        throw new Exception('Error creating role');
+        throw new ApiException('Error creating role');
     }
 
     public function updateRoleByName(array $role, string $roleName)
@@ -173,7 +173,7 @@ class ApiService
             return $this->getRoleByName($roleName);
         }
 
-        throw new Exception('Error updating role');
+        throw new ApiException('Error updating role');
     }
 
     public function updateRoleById(array $role, string $roleId)
@@ -184,7 +184,7 @@ class ApiService
             return $this->getRoleById($roleId);
         }
 
-        throw new Exception('Error updating role');
+        throw new ApiException('Error updating role');
     }
 
     public function deleteRoleByName(string $roleName)
@@ -196,7 +196,7 @@ class ApiService
             return true;
         }
 
-        throw new Exception('Error deleting role');
+        throw new ApiException('Error deleting role');
     }
 
     public function deleteRoleById(string $roleId)
@@ -238,7 +238,7 @@ class ApiService
             return true;
         }
 
-        throw new Exception('Error creating group');
+        throw new ApiException('Error creating group');
     }
 
     public function getLastCreatedGroup()
@@ -268,7 +268,7 @@ class ApiService
             return true;
         }
 
-        throw new Exception('Error deleting group');
+        throw new ApiException('Error deleting group');
     }
 
     public function getToken(): Token

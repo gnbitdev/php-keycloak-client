@@ -114,7 +114,7 @@ class Sdk extends AbstractProvider
      *
      * @return string
      */
-    public function getBaseAccessTokenUrl()
+    public function getBaseAccessTokenUrl(array $params)
     {
         return $this->getBaseUrlWithRealm().'/protocol/openid-connect/token';
     }

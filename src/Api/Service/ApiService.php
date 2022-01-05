@@ -82,7 +82,7 @@ class ApiService
     {
         $response = $this->request('PUT', "users/$userId/reset-password", [
             'temporary' => $isTemporary,
-            'password'    => $password
+            'value'    => $password
         ]);
 
         if ($response->getStatusCode() == 204) {

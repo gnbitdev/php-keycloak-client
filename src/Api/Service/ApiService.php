@@ -81,7 +81,7 @@ class ApiService
     public function setUserPassword(string $userId, bool $isTemporary, string $password)
     {
         $response = $this->request('PUT', "users/$userId/reset-password", [
-            'isTemporary' => $isTemporary,
+            'temporary' => $isTemporary,
             'password'    => $password
         ]);
 

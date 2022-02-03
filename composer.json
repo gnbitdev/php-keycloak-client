@@ -1,8 +1,8 @@
 {
-    "name": "gnbitdev/php-keycloak-client",
+    "name": "gnbit/php-keycloak-client",
     "license": "MIT",
     "keywords": [
-        "laravel",
+        "sdk",
         "keycloak",
         "jwt",
         "authentication"
@@ -13,17 +13,23 @@
             "email": "41269373+joanjpx@users.noreply.github.com"
         }
     ],
+    "repositories": [
+        {
+            "url": "https://github.com/gnbitdev/alabra-entity",
+            "type": "git"
+        }
+    ],
     "minimum-stability": "dev",
     "require": {
+        "php": "^7.2 || ^7.3 || ^7.4 || ^8",
         "guzzlehttp/guzzle": "^7.0",
         "league/oauth2-client": "^2.6",
-        "firebase/php-jwt": "^5.5"
+        "firebase/php-jwt": "^5.5",
+        "gnbit/alabra-entity": "dev-main"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7",
-        "phpstan/phpstan": "^0.12",
-        "vimeo/psalm": "^3.4",
-        "squizlabs/php_codesniffer": "^3.4"
+        "phpunit/phpunit": "^7.5",
+        "phpstan/phpstan": "^0.12"
     },
     "autoload": {
         "psr-4": {
@@ -35,5 +41,8 @@
             "KeycloakApiCLientTest\\": "test/unit",
             "KeycloakApiCLientIntegrationTest\\": "test/integration"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always"
     }
 }

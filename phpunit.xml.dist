@@ -14,13 +14,12 @@
     
     <php>
         <!-- Integration Test Variables -->
-        <env name="kC_API_USERNAME" value="rest" />
-        <env name="kC_API_PASSWORD" value="123123123" />
+        <env name="kC_API_USERNAME" value="apirest-client" />
+        <env name="kC_API_PASSWORD" value="secret" />
         <env name="kC_API_GTYPE" value="password" />
-        <env name="kC_API_CLIENT_ID" value="rest-client" />
-        <env name="kC_API_CLIENT_SECRET" value="926e6aa9-27b1-426f-a8a6-dd18e1d686da" />
+        <env name="kC_API_CLIENT_ID" value="api-client_id" />
+        <env name="kC_API_CLIENT_SECRET" value="mysecret" />
         
-        <env name="kC_API_BASEURL" value="http://192.168.10.78:6030" />
-        <env name="kC_API_REALM" value="demo" />
+        <env name="kC_API_ENDPOINT" value="http://localhost:8080/auth/realms/testrealm/protocol/openid-connect/token" />
     </php>
 </phpunit>

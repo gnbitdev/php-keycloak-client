@@ -1,2 +1,4 @@
 vendor
-/nbproject/private/
+nbproject
+docker-compose.yml
+phpunit.xml

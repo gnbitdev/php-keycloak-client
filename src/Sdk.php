@@ -321,4 +321,16 @@ class Sdk extends AbstractProvider
 
         return parent::parseResponse($response);
     }
+    
+    public function getEncryptionKey()
+    {
+        return $this->encryptionKey;
+    } 
+    
+    public function getEncryptionAlgorithm()
+    {
+       return $this->encryptionAlgorithm;
+    } 
+    
+    
 }

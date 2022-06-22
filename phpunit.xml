@@ -22,5 +22,14 @@
         
         <env name="kC_API_BASEURL" value="http://192.168.10.78:6030" />
         <env name="kC_API_REALM" value="demo" />
+
+        <!-- Database Test Variables -->
+        <env name="kC_DB_HOST" value="192.168.10.78" />
+        <env name="kC_DB_PORT" value="5432" />
+        <env name="kC_DB_USER" value="postgres" />
+        <env name="kC_DB_PASS" value="postgres" />
+        <env name="kC_DB_NAME" value="prev_keycloak2" />
+        <env name="kC_DB_REALM" value="chile" />
+
     </php>
 </phpunit>

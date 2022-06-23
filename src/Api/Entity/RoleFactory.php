@@ -10,8 +10,8 @@ class RoleFactory
     {
         return new Role(
             $data['id'],
-            $data['name'],
-            $data['description'],
+            $data['name'] ?? '',
+            !empty($data['description']) ? $data['description'] : '',
             $data['attributes'] ?? []
         );
     }

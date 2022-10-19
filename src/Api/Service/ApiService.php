@@ -106,6 +106,21 @@ class ApiService
         throw new ApiException('Error setting user enabled');
     }
 
+
+    public function toggleUserEmailVerified(string $userId, bool $emailVerified)
+    {
+
+        $response = $this->request('PUT', "users/$userId", [
+            'emailVerified' => $emailVerified
+        ]);
+
+        if ($response->getStatusCode() == 204) {
+            return true;
+        }
+
+        throw new ApiException('Error setting user email verified');
+    }
+
     public function deleteUser(string $id)
     {
 

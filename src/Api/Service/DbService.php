@@ -130,7 +130,7 @@ class DbService
      * @param  string $userId
      * @return string
      */
-    public function getUserCredentialDate(string $userId) : int|null
+    public function getUserCredentialDate(string $userId)
     {
         $date = $this->pdo->query("SELECT created_date FROM credential WHERE user_id='".$userId."'")->fetch()['created_date'] ?? null;
 

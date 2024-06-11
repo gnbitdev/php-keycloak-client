@@ -9,6 +9,8 @@ class DbService
 {
 
     private $conn;
+    private $pdo;
+    private $realm;
 
     public function __construct(DB $conn, string $realm)
     {

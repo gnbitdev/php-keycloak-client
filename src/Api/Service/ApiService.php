@@ -18,6 +18,7 @@ class ApiService
 {
 
     private $conn;
+    private $htttpClient;
 
     public function __construct(Connection $conn)
     {

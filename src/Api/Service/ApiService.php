@@ -16,7 +16,7 @@ use KeycloakApiClient\Api\Entity\UserFactory;
 
 class ApiService
 {
-
+    private $htttpClient;
     private $conn;
 
     public function __construct(Connection $conn)

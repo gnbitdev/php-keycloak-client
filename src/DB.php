@@ -7,6 +7,8 @@ use KeycloakApiClient\Api\Entity\CredentialDB;
 
 class DB
 {
+    private \PDO $db;
+    
     public function __construct(
         private CredentialDB $credential
     )

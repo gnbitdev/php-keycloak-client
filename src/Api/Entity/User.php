@@ -11,6 +11,10 @@ class User implements EntityInterface
     use EntityTrait;
 
     /**
+     * @var string
+    */
+    protected $id;
+    /**
      *
      * @var string
      */

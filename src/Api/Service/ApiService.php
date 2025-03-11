@@ -292,7 +292,7 @@ class ApiService
 
         $response = $this->htttpClient->request(
             "POST",
-            "/auth/realms/{$this->conn->realm}/protocol/openid-connect/token",
+            "/realms/{$this->conn->realm}/protocol/openid-connect/token",
             [
                 'form_params' => $this->conn->credentials->toArray()
             ]
@@ -326,7 +326,7 @@ class ApiService
 
         $response = $this->htttpClient->request(
             $method,
-            "/auth/admin/realms/{$this->conn->realm}/{$uri}",
+            "/admin/realms/{$this->conn->realm}/{$uri}",
             $request
         );
 
